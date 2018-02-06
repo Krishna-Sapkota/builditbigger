@@ -7,22 +7,22 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 
 import java.io.IOException;
-import com.udacity.gradle.builditbigger.backend.MyBean;
 
+import com.udacity.gradle.builditbigger.backend.myApi.MyApi;
 
 /**
  * Created by Krishna on 2/4/18.
  */
 
 class FetchJokeTask extends AsyncTask<Void, Void, String> {
-    private static Libjoke myApiService = null;
+    private static MyApi myApiService = null;
 
     @Override
     protected final String doInBackground(Void... params) {
         if (myApiService == null) {  // Only do this once
-            Libjoke.Builder builder = new Libjoke.Builder(AndroidHttp.newCompatibleTransport(),
+            MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
-                    .setRootUrl("https://udacity-jokebackend.appspot.com/_ah/api/");
+                    .setRootUrl("https://backend.appspot.com/_ah/api/");
             myApiService = builder.build();
         }
 
