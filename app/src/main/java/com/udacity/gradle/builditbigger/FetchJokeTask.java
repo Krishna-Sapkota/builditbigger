@@ -1,37 +1,66 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
+import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
+import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
+import com.project.krishna.jokedisplaylib.JokeActivity;
+import com.udacity.gradle.builditbigger.backend.myApi.MyApi;
 
 import java.io.IOException;
 
-import com.udacity.gradle.builditbigger.backend.myApi.MyApi;
 
-/**
- * Created by Krishna on 2/4/18.
- */
 
-class FetchJokeTask extends AsyncTask<Void, Void, String> {
+public class FetchJokeTask extends AsyncTask<Void, Void, String> {
+
+
+
+
     private static MyApi myApiService = null;
+    private Context mContext;
+
+    public FetchJokeTask (Context context){
+        mContext = context;
+    }
 
     @Override
-    protected final String doInBackground(Void... params) {
-        if (myApiService == null) {  // Only do this once
+    protected String doInBackground(Void... params){
+        if(myApiService == null) {  // Only do this once
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
-                    .setRootUrl("https://backend.appspot.com/_ah/api/");
+
+                    .setRootUrl("https://final-12.appspot.com/_ah/api/")
+                    .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
+                        @Override
+                        public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
+                            abstractGoogleClientRequest.setDisableGZipContent(true);
+                        }
+                    });
+
+
             myApiService = builder.build();
         }
 
         try {
             return myApiService.getRandomJoke().execute().getText();
         } catch (IOException e) {
-            Log.e(FetchJokeTask.class.getSimpleName(), e.getMessage());
-            return null;
+            return e.getMessage();
         }
     }
 
+    @Override
+    protected void onPostExecute(String result) {
+
+        Intent intent = new Intent(mContext, JokeActivity.class);
+
+        intent.putExtra("extra_joke", result);
+        mContext.startActivity(intent);
+    }
 }
+
+
+

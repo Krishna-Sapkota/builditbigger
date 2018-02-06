@@ -20,7 +20,7 @@ public class MyEndPoint {
 
     @ApiMethod(name = "getRandomJoke")
     public MyBean getRandomJoke() {
-        return new MyBean(MyJokes.getRandomJoke());
+        return new MyBean(MyJokes.getJoke());
     }
 
 }

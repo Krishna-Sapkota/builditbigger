@@ -22,7 +22,7 @@ public class MyJokes {
 
     private static final Random random = new Random();
 
-    public static String getRandomJoke() {
+    public static String getJoke() {
         return JOKES[random.nextInt(JOKES.length)];
     }
 

@@ -6,7 +6,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.google.appengine:gradle-appengine-plugin:1.9.28'
+        classpath 'com.google.appengine:gradle-appengine-plugin:1.9.42'
     }
 }
 
@@ -22,13 +22,15 @@ sourceCompatibility = JavaVersion.VERSION_1_7
 targetCompatibility = JavaVersion.VERSION_1_7
 
 dependencies {
-    compile project(':JavaJokeLib')
-    appengineSdk 'com.google.appengine:appengine-java-sdk:1.9.28'
-    compile 'com.google.appengine:appengine-endpoints:1.9.28'
-    compile 'com.google.appengine:appengine-endpoints-deps:1.9.28'
-    compile 'com.google.http-client:google-http-client-android:1.19.0'
-    compile 'com.google.api-client:google-api-client:1.19.0'
+    appengineSdk 'com.google.appengine:appengine-java-sdk:1.9.42'
+    compile 'com.google.appengine:appengine-endpoints:1.9.42'
+    compile 'com.google.appengine:appengine-endpoints-deps:1.9.42'
     compile 'javax.servlet:servlet-api:2.5'
+   compile 'com.google.api-client:google-api-client:+'
+    compile 'com.google.api-client:google-api-client-android:+'
+    compile 'com.google.http-client:google-http-client:+'
+    compile 'com.google.http-client:google-http-client-android:+'
+    compile project(':JavaJokeLib')
 }
 
 appengine {
@@ -41,4 +43,14 @@ appengine {
         getDiscoveryDocsOnBuild = true
         googleClientVersion = '1.23.0'
     }
+
 }
+task runAppEngine (dependsOn: ":backend:appengineRun") {
+    project(":backend").afterEvaluate { backend ->
+        backend.extensions.appengine.daemon = true
+    }
+    doLast {
+        println "started the server!"
+    }
+}
+
