@@ -4,26 +4,22 @@ import java.util.Random;
 
 public class MyJokes {
 
-    // a list of canned jokes to pick from
-    private static final String[] JOKES = {
-            "A computer once beat me at chess, but it was no match for me at kick boxing.",
-            "What did one ocean say to the other ocean? Nothing, they just waved.",
-            "If you owe the bank $100,000, the bank owns you. If you owe the bank $1,000,000,000, you own the bank.",
-            "When everything's coming your way, you're in the wrong lane.",
-            "Whenever I find the key to success, someone changes the lock.",
-            "Why did the bee get married? Because he found his honey.",
-            "I just let my mind wander, and it didn't come back.",
-            "IRS: We've got what it takes to take what you've got.",
-            "I asked God for a bike, but I know God works in mysterious ways. So I stole a bike and asked for forgiveness.",
-            "If I agreed with you we'd both be wrong.",
-            "If God is watching us, the least we can do is be entertaining.",
-            "I like work: it fascinates me. I can sit and look at it for hours.",
+    private static final String[] JOKELIST = {
+            "Maybe if we start telling people the brain is an app they will start using it.",
+            "I need more than 140 characters to tell you how beautiful you are.",
+            "You must be an angel, because your texture mapping is so divine!",
+            "Moses had the first tablet that could connect to the cloud.",
+            "Is your name Wi-Fi? Because I'm feeling a connection.",
+            "I was going to be a computer forensics expert, but couldn't hack IT.",
+            "Every function without you will always be void of love.",
+            "Is Google male or female? Female, because it doesn't let you finish a sentence before making a suggestion",
+
     };
 
     private static final Random random = new Random();
 
     public static String getJoke() {
-        return JOKES[random.nextInt(JOKES.length)];
+        return JOKELIST[random.nextInt(JOKELIST.length)];
     }
 
 }
