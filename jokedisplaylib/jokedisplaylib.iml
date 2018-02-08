@@ -98,7 +98,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" scope="TEST" name="com.android.support.test:exposed-instrumentation-api-publish-0.5" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:support-media-compat-26.1.0" level="project" />
-    <orderEntry type="library" exported="" name="__local_jars__:/Users/Krishna/Desktop/Udacity/FinalProject/jokedisplaylib/libs/myApi-v1-1.23.0-SNAPSHOT.jar:unspecified@jar" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="junit:junit:4.12@jar" level="project" />
     <orderEntry type="library" exported="" name="android.arch.lifecycle:common:1.0.0@jar" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:support-fragment-26.1.0" level="project" />
